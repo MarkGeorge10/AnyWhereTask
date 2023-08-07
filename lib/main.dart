@@ -1,6 +1,7 @@
 
 import 'package:anywheretask/view_models/animation_view_model.dart';
 import 'package:anywheretask/view_models/app_details_view_model.dart';
+import 'package:anywheretask/view_models/search_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
@@ -9,9 +10,7 @@ import 'app_route.dart';
 
 
 
-var logger = Logger(
-  printer: PrettyPrinter(),
-);
+
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,6 +19,7 @@ void main() {
     providers: [
       ChangeNotifierProvider.value(value: AppDetailsViewModel()),
       ChangeNotifierProvider.value(value: AnimationViewModel()),
+      ChangeNotifierProvider.value(value: SearchViewModel()),
     ],
     child: MaterialApp(
       debugShowCheckedModeBanner: false,
