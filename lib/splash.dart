@@ -1,15 +1,10 @@
 import 'dart:async';
 
-import 'package:anywheretask/view_models/search_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
-
 import 'res/constants.dart';
-import 'res/navigation.dart';
-import 'view/home_page.dart';
 import 'view_models/animation_view_model.dart';
-import 'view_models/app_details_view_model.dart';
 
 class SplashScreen extends StatefulWidget {
   static const routeName = '/splash';
@@ -35,7 +30,8 @@ class _SplashScreenState extends State<SplashScreen>
 
     Timer(const Duration(seconds: 2), () {
 
-          changeScreenReplacement(context, MyHomePage.routeName);
+      Navigator.pushReplacementNamed(context, '/home');
+
 
     });
 

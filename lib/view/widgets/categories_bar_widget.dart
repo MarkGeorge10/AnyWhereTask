@@ -53,11 +53,10 @@ class CategoriesBarWidget extends StatelessWidget {
                   CategoryCard(
                     onPressed: () {
                       print(index);
-                      // collectionViewModel.changeSelectedCollection(index);
-                      // productViewModel.getProductsApi(collectionViewModel.collectionData.data![index!].handle!,languageViewModel.locale!.languageCode);
+                      collectionViewModel.changeSelectedCollection(index);
                     },
                     text: collectionViewModel.searchData.data!.specificTopics![index].name! ?? "",
-                    isSelected: collectionViewModel.selectedCollection == index,
+                    isSelected: collectionViewModel.selectedTopic == index,
                   );
               },
             ),

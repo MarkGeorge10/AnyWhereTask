@@ -9,11 +9,21 @@ import '../models/app_details/app_details.dart';
 
 class SearchViewModel with ChangeNotifier {
   final SearchRepository searchRepository = SearchRepository();
-  int selectedCollection = 0;
+  int selectedTopic = 0;
   ApiResponse<SearchModel> searchData = ApiResponse.loading(null);
+  List<Topics> topicList = [];
+
+
+  changeSelectedCollection(int i){
+    selectedTopic = i;
+    topicList.clear();
+    topicList.addAll(searchData.data!.specificTopics![selectedTopic].topics!);
+    notifyListeners();
+  }
 
   setSearchData(ApiResponse<SearchModel> response) {
     searchData = response;
+    topicList.addAll(searchData.data!.specificTopics![selectedTopic].topics!);
     print(searchData);
     notifyListeners();
   }

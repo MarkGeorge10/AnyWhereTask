@@ -11,7 +11,7 @@ class AppRouter {
       case SplashScreen.routeName:
         return MaterialPageRoute(builder: (_) => const SplashScreen());
       case MyHomePage.routeName:
-        return MaterialPageRoute(builder: (_) => const MyHomePage());
+        return MaterialPageRoute(builder: (_) => MyHomePage());
       // case SignUpScreen.routeName:
       //   return MaterialPageRoute(builder: (_) =>  const SignUpScreen());
 
