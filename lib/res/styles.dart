@@ -24,9 +24,10 @@ const kPostTextStyle = TextStyle(
   fontWeight: FontWeight.bold,
 );
 
-const kContentLargeStyle = TextStyle(
+const kContentBoldLargeStyle = TextStyle(
   fontSize: 18.0,
   color: black,
+  fontWeight: FontWeight.w800,
 
 );
 
