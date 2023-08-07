@@ -1,6 +1,8 @@
 import 'dart:async';
 
+import 'package:anywheretask/view_models/search_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 import 'res/constants.dart';
@@ -30,16 +32,15 @@ class _SplashScreenState extends State<SplashScreen>
 
   @override
   Widget build(BuildContext context) {
-    final appDetailsProvider = context.watch<AppDetailsViewModel>();
 
     Timer(const Duration(seconds: 2), () {
-      appDetailsProvider.getAppDetailsApi();
 
           changeScreenReplacement(context, MyHomePage.routeName);
 
     });
 
     return Scaffold(
+      backgroundColor: Colors.black,
       body: ChangeNotifierProvider<AnimationViewModel>(
         create: (context) => AnimationViewModel()..init(controller),
         child: Consumer<AnimationViewModel>(
@@ -47,7 +48,7 @@ class _SplashScreenState extends State<SplashScreen>
             return Center(
               child: Container(
                   alignment: Alignment.center,
-                  child: Image.asset(
+                  child: SvgPicture.asset(
                     logoTransparent,
                     height: viewModel.sizeAnimation.value,
                     width: viewModel.sizeAnimation.value,

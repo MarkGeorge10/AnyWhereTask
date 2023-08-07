@@ -2,9 +2,6 @@
 
 class KeyUtils{
 
-
-  static String baseUrl = "";
-  static int userId = 0;
-
+  static String baseUrl = "http://api.duckduckgo.com";
 
 }

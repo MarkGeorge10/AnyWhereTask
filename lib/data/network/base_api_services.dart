@@ -3,5 +3,5 @@ abstract class BaseApiServices {
 
   Future<dynamic> getPostApiResponse(String url, dynamic data);
 
-  getGetApiParamResponse(String url, String endpoint, Map<String,String> queryParams);
+  getGetApiParamResponse(String url, Map<String,String> queryParams);
 }

@@ -33,28 +33,21 @@
    }
 
    @override
-   Future getGetApiParamResponse(String url, String endpoint, Map<String,String> queryParams) async {
+   Future getGetApiParamResponse(String url, Map<String,String> queryParams) async {
      try {
-       print(url);
-       print(endpoint);
-       print(queryParams);
 
-       final uri =
-       Uri.https(url, endpoint, queryParams);
-       print(uri);
+       Uri uri = Uri.parse(url);
+       final finalUri = uri.replace(queryParameters: queryParams); //USE THIS
 
-
-       final response = await http.get(uri);
+       final response = await http.get(finalUri);
        responseJson = returnResponse(response);
-       print("------------------------------call--------------------------------------");
-       print(url);
-       print(queryParams);
+       print(response.statusCode.toString());
 
        print(response.body.toString());
      } on SocketException {
+
        throw FetchDataException('No Internet Connection');
      }
-
      return responseJson;
    }
 
