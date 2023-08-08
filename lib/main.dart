@@ -1,4 +1,5 @@
 
+import 'package:anywheretask/res/Dimensions.dart';
 import 'package:anywheretask/view_models/animation_view_model.dart';
 import 'package:anywheretask/view_models/app_details_view_model.dart';
 import 'package:anywheretask/view_models/search_view_model.dart';
@@ -39,6 +40,10 @@ class MyAppManager extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.sizeOf(context).height ;
+    double width = MediaQuery.sizeOf(context).width ;
+    Dimensions dimensions = Dimensions.getInstance() ;
+    dimensions.setDimension(height, width) ;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
@@ -46,7 +51,7 @@ class MyAppManager extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       // Define the initial route (optional)
-      initialRoute: '/splash',
+      initialRoute: '/home',
       onGenerateRoute: appRouter.generateRoute,
     );
   }

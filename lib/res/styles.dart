@@ -26,8 +26,8 @@ const kPostTextStyle = TextStyle(
 
 const kContentBoldLargeStyle = TextStyle(
   fontSize: 18.0,
-  color: black,
-  fontWeight: FontWeight.w800,
+  color: Colors.white,
+  fontWeight: FontWeight.w900,
 
 );
 
@@ -119,6 +119,13 @@ const kContentWhiteStyle = TextStyle(
   color:white,
   fontSize: 14.0,
 );
+
+TextStyle hintTextField = const TextStyle(
+  color: grey,
+  fontFamily: 'Arial',
+  fontSize: 14,
+);
+
 
 
 
