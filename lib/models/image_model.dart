@@ -6,9 +6,9 @@ class ImageModel {
   ImageModel({this.height, this.uRL, this.width});
 
   ImageModel.fromJson(Map<String, dynamic> json) {
-    height = json['Height']?? "";
+    //height = json['Height']?? "";
     uRL = json['URL']?? "";
-    width = json['Width']?? "";
+    //width = json['Width']?? "";
   }
 
   Map<String, dynamic> toJson() {

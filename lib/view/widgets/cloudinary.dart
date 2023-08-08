@@ -38,26 +38,28 @@ class Cloudinary extends StatelessWidget {
       src = image;
     } else {
       src =
-      'https://res.cloudinary.com/swiftr/image/upload/q_auto,f_auto,w_$width,fl_progressive/$image';
+      "https://duckduckgo.com${image}";
     }
 
     if (cache) {
       return CachedNetworkImage(
         imageUrl: image,
         placeholder: (context, url) =>
-            LoadingWidget(),
+            const SizedBox(
+                width: 50,
+                height: 50,
+                child: LoadingWidget()),
         errorWidget: (context, url, error) =>
-            Center(child: new Icon(Icons.error)),
+            const Center(child: Icon(Icons.error)),
         fit: BoxFit.cover,
         fadeInDuration: Duration.zero,
         fadeInCurve: Curves.linear,
         fadeOutCurve: Curves.linear,
         fadeOutDuration: Duration.zero,
 
-        height: heightImage??400,
+        height: heightImage??100,
         // TEMP-code due to this issue: https://github.com/renefloor/flutter_cached_network_image/issues/134
-        width: double
-            .infinity, // TEMP-code due to this issue: https://github.com/renefloor/flutter_cached_network_image/issues/134
+        width:50, // TEMP-code due to this issue: https://github.com/renefloor/flutter_cached_network_image/issues/134
       );
     } else {
       return FadeInImage.assetNetwork(

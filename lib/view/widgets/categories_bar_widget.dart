@@ -1,4 +1,5 @@
 import 'package:anywheretask/data/response/status.dart';
+import 'package:anywheretask/models/topic_model.dart';
 import 'package:anywheretask/res/colors.dart';
 import 'package:anywheretask/view/widgets/loading/LoadingWidget.dart';
 import 'package:anywheretask/view_models/search_view_model.dart';
@@ -10,60 +11,55 @@ import 'package:provider/provider.dart';
 
 class CategoriesBarWidget extends StatelessWidget {
 
-
-  const CategoriesBarWidget({
+  List<RelatedTopics> specificTopic;
+   CategoriesBarWidget({
     Key? key,
+    required this.specificTopic
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
 
-    final collectionViewModel = context.watch<SearchViewModel>();
+    final searchViewModel = context.watch<SearchViewModel>();
 
     return Consumer<SearchViewModel>(
-      builder: (context,collectionValue,_){
+      builder: (context,value,_){
+        return Container(
+          height: 60,
+          margin: const EdgeInsets.symmetric(vertical: 15),
+          child: ListView.builder(
+            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+            shrinkWrap: true,
+            itemCount: value.searchData.data!.specificTopics!.length,
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) {
 
-        if (collectionValue
-            .searchData.status ==
-            Status.LOADING) {
-          return const SizedBox(
-            height: 50,
-            child: Center(
-              child: LoadingWidget(),
-            ),
-          );
-        } else if (collectionValue
-            .searchData.status ==
-            Status.ERROR) {
-          return Text(
-              "${collectionValue.searchData} ");
-        } else {
+    if (value.searchData.status == Status.LOADING) {
+    return const SizedBox(
+    height: 50,
+    child: Center(
+    child: LoadingWidget(),
+    ),
+    );
+    } else if (value.searchData.status == Status.ERROR) {
+    return Text("${value.searchData} ");
+    } else {
+      return
 
-          return  Container(
-            height: 60,
-            margin: const EdgeInsets.symmetric(vertical: 15),
-            child: ListView.builder(
-              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-              shrinkWrap: true,
-              itemCount: collectionValue.searchData.data!.specificTopics!.length,
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) {
-                return
+        CategoryCard(
+          onPressed: () {
+            print(index);
+            searchViewModel.changeSelectedCollection(index);
+          },
+          text: value.searchData.data!.specificTopics![index].name! ?? "",
+          isSelected: searchViewModel.selectedTopic == index,
+        );
+    }
+            },
+          ),
+        );
 
-                  CategoryCard(
-                    onPressed: () {
-                      print(index);
-                      collectionViewModel.changeSelectedCollection(index);
-                    },
-                    text: collectionViewModel.searchData.data!.specificTopics![index].name! ?? "",
-                    isSelected: collectionViewModel.selectedTopic == index,
-                  );
-              },
-            ),
-          );
-
-        }
-        }
+      },
 
     );
   }

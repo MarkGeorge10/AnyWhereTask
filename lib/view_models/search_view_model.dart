@@ -10,7 +10,8 @@ import '../models/app_details/app_details.dart';
 class SearchViewModel with ChangeNotifier {
   final SearchRepository searchRepository = SearchRepository();
   int selectedTopic = 0;
-  ApiResponse<SearchModel> searchData = ApiResponse.loading(null);
+  String searchText = "";
+  ApiResponse<SearchModel> searchData = ApiResponse.completed(null);
   List<Topics> topicList = [];
 
 
@@ -22,6 +23,7 @@ class SearchViewModel with ChangeNotifier {
   }
 
   setSearchData(ApiResponse<SearchModel> response) {
+
     searchData = response;
     topicList.addAll(searchData.data!.specificTopics![selectedTopic].topics!);
     print(searchData);
@@ -29,6 +31,13 @@ class SearchViewModel with ChangeNotifier {
   }
 
   getSearchApi(Map<String, String> q) async {
+    if(searchData.data !=null){
+      searchData.data!.generalTopics!.clear();
+      searchData.data!.specificTopics!.clear();
+      topicList.clear();
+      searchData = ApiResponse.completed(null);
+      selectedTopic = 0;
+    }
     await searchRepository.getDuckData(q).then((value) {
       setSearchData(ApiResponse.completed(value));
     }).onError((error, stackTrace) =>
